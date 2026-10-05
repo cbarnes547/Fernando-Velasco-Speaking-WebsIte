@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- viewport-fit=cover lets the page extend edge to edge on notched phones -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fernando Velasco | Keynote Speaker</title>
+
+<!-- Google Fonts: Inter for body text, Montserrat (heavy weights) for headings -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+<!-- Site-wide styles (colors, layout, buttons, modals, ticker animation) -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ HEADER / NAVIGATION ============ -->
+<header><div class="wrap">
+<a class="logo" href="home.html">FERNANDO VELASCO</a>
+<!-- Main nav links; #nav is likely toggled open/closed on mobile by script.js -->
+<nav id="nav"><a href="home.html">Home</a><a href="speaking.html">Speaking</a><a href="mask.html">M.A.S.K. Framework</a><a href="about.html">About</a><a href="impact.html">Impact</a></nav>
+<div style="display:flex;gap:10px;align-items:center">
+  <!-- data-book: script.js hooks into this attribute to open the booking modal -->
+  <button class="btn sm" data-book>Book Fernando</button>
+  <!-- Hamburger button that shows/hides the nav on small screens -->
+  <button class="menu" id="menu" aria-label="Menu">☰</button>
+</div>
+</div></header>
+
+<main>
+
+<!-- ============ HERO: headline, intro, and primary calls to action ============ -->
+<section class="hero"><div class="wrap">
+<h1>High performance shouldn't require hiding.</h1>
+<p>Fernando Velasco helps high performers take off the masks created by pressure, performance, and expectation so they can lead, live, and perform without losing themselves in the process.</p>
+<div class="cta">
+  <button class="btn" data-book>Book Fernando</button>
+  <!-- class "o" = outline button style; #reel opens the speaking reel modal -->
+  <button class="btn o" id="reel">Watch the Speaking Reel</button>
+</div>
+</div></section>
+
+<!-- Credibility strip: quick summary of background -->
+<div class="strip">9-Year NFL Veteran • Former NFL Director of Player Engagement • Speaker • Educator • Founder</div>
+
+<!-- Scrolling logo ticker (placeholder text; swap when i get real logos).
+     The set of items is repeated so the CSS animation can loop seamlessly. -->
+<div class="ticker"><div><span>NFL TEAM LOGO</span><span>CORPORATE CLIENT</span><span>UNIVERSITY</span><span>NFL TEAM LOGO</span><span>CORPORATE CLIENT</span><span>UNIVERSITY</span><span>NFL TEAM LOGO</span><span>CORPORATE CLIENT</span><span>UNIVERSITY</span><span>NFL TEAM LOGO</span><span>CORPORATE CLIENT</span><span>UNIVERSITY</span></div></div>
+
+<!-- ============ PROBLEM STATEMENT ============ -->
+<!-- "fade" class: fade-in on scroll (handled in CSS/JS) -->
+<section class="b"><div class="wrap fade"><h2>We're really good at looking fine.</h2>
+<blockquote>The performance is polished. The results speak. But the cost of carrying it all, quietly and alone, is rarely on the scoreboard.</blockquote></div></section>
+
+<!-- ============ M.A.S.K. FRAMEWORK OVERVIEW ============ -->
+<section class="b alt"><div class="wrap fade"><h2>The M.A.S.K. Framework</h2>
+<!-- Empty on purpose: script.js fills #maskgrid with the four framework cards -->
+<div class="grid g4" id="maskgrid"></div>
+<p style="margin-top:24px"><a href="mask.html" style="font-weight:800;color:var(--gold)">EXPLORE THE M.A.S.K. FRAMEWORK →</a></p></div></section>
+
+<!-- ============ FLAGSHIP KEYNOTE ============ -->
+<section class="b dark"><div class="wrap fade"><p class="note" style="color:var(--gold);font-weight:800;opacity:1">FLAGSHIP KEYNOTE</p>
+<h2>The M.A.S.K. — High Performance Without Hiding</h2>
+<!-- "chk" class styles each list item with a checkmark -->
+<ul class="chk"><li>Recognize the masks pressure and expectation create</li><li>Build the habit of asking for help before a crisis</li><li>Create team systems that make honesty safe</li><li>Lead from identity, not just performance</li></ul>
+<button class="btn" data-book>Bring Fernando to your organization</button></div></section>
+
+<!-- ============ AUDIENCES ============ -->
+<section class="b"><div class="wrap fade"><h2>Who Fernando speaks to</h2>
+<!-- Three-column card grid, one card per audience type -->
+<div class="grid g3"><div class="card"><h3>Corporate Leaders &amp; Teams</h3><p>Build cultures where high performers can be honest and stay effective.</p></div>
+<div class="card"><h3>Professional &amp; Collegiate Athletes</h3><p>Real talk on pressure, identity, and life beyond the game.</p></div>
+<div class="card"><h3>Universities &amp; Emerging Leaders</h3><p>Tools for the next generation to lead without losing themselves.</p></div></div></div></section>
+
+<!-- ============ VIDEO + TESTIMONIALS ============ -->
+<section class="b alt"><div class="wrap fade"><h2>See Fernando speak</h2>
+<!-- data-reel: opens the speaking reel modal (same as #reel button above) -->
+<button class="vid" data-reel>▶ PLAY SPEAKING REEL</button>
+<!-- Carousel container and pagination dots; both populated by script.js -->
+<div class="car" id="car" style="margin-top:36px"></div><div class="dots" id="dots"></div></div></section>
+
+<!-- ============ CLOSING CALL TO ACTION ============ -->
+<section class="b dark"><div class="wrap fade" style="text-align:center"><h2>What are your people carrying?</h2>
+<p>Tell us about your event and we'll respond with availability and next steps.</p><button class="btn" data-book>Book Fernando</button></div></section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer><div class="wrap">© Fernando Velasco · <a href="speaking.html">Speaking</a> · <button class="btn sm" data-book>Book Fernando</button></div></footer>
+
+<!-- ============ MODALS (hidden until opened by script.js) ============ -->
+<!-- Booking modal: script.js injects the booking form into [data-form] -->
+<div class="modal" id="bm"><div class="box"><button class="x" data-close aria-label="Close">×</button><h2>Book Fernando</h2><div data-form></div></div></div>
+<!-- Speaking reel modal: replace the placeholder div with a real video embed -->
+<div class="modal" id="rm"><div class="box"><button class="x" data-close aria-label="Close">×</button><div class="vid" style="cursor:default">Speaking reel placeholder: embed video here</div></div></div>
+
+<!-- Page behavior: menu toggle, modals, M.A.S.K. cards, carousel, scroll fades.
+     Loaded last so the DOM elements above already exist when it runs. -->
+<script src="script.js"></script>
+</body>
+</html>
