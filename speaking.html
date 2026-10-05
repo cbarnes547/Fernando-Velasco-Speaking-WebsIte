@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- viewport-fit=cover lets the page extend edge to edge on notched phones -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Speaking | Fernando Velasco</title>
+
+<!-- Google Fonts: Inter for body text, Montserrat (heavy weights) for headings -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+<!-- Site-wide styles shared by every page -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ HEADER / NAVIGATION ============ -->
+<header><div class="wrap">
+<a class="logo" href="home.html">FERNANDO VELASCO</a>
+<!-- Main nav; same links on every page -->
+<nav id="nav"><a href="home.html">Home</a><a href="speaking.html">Speaking</a><a href="mask.html">M.A.S.K. Framework</a><a href="about.html">About</a><a href="impact.html">Impact</a></nav>
+<div style="display:flex;gap:10px;align-items:center">
+  <!-- data-book: script.js uses this attribute to open the booking modal -->
+  <button class="btn sm" data-book>Book Fernando</button>
+  <!-- Hamburger button that shows/hides the nav on small screens -->
+  <button class="menu" id="menu" aria-label="Menu">☰</button>
+</div>
+</div></header>
+
+<main><section class="b"><div class="wrap">
+<!-- Page title; clamp() scales the font size smoothly between 2rem and 3.4rem -->
+<h1 style="font-size:clamp(2rem,5vw,3.4rem)">Speaking</h1>
+
+<!-- ============ WHAT FERNANDO OFFERS ============ -->
+<!-- Three-column card grid: keynote, workshop, and audience outcomes -->
+<div class="grid g3"><div class="card"><h3>Keynote</h3><p>The M.A.S.K. — High Performance Without Hiding. Built for conferences, leadership offsites, and athletic programs.</p></div>
+<div class="card"><h3>Workshop / Team Experience</h3><p>An interactive session that turns the framework into team habits and systems.</p></div>
+<!-- "chk" class styles each list item with a checkmark -->
+<div class="card"><h3>Audience Outcomes</h3><ul class="chk"><li>Honest conversations</li><li>Earlier help-seeking</li><li>Stronger identity</li></ul></div></div>
+
+<!-- ============ BOOKING REASSURANCE ============ -->
+<!-- Short list meant to build confidence before the visitor fills out the form -->
+<h2 style="margin-top:48px">Booking reassurance</h2>
+<ul class="chk"><li>Customized to your audience and goals</li><li>Clear process from inquiry to event day</li><li>Prompt response to every request</li></ul>
+
+<!-- ============ INLINE REQUEST FORM ============ -->
+<!-- Empty on purpose: script.js injects the booking form into [data-form] -->
+<h2 style="margin-top:48px">Request Fernando</h2><div class="card" data-form></div></div></section></main>
+
+<!-- ============ FOOTER ============ -->
+<footer><div class="wrap">© Fernando Velasco · <a href="speaking.html">Speaking</a> · <button class="btn sm" data-book>Book Fernando</button></div></footer>
+
+<!-- ============ MODALS (hidden until opened by script.js) ============ -->
+<!-- Booking modal: a second copy of the form is injected into its [data-form] -->
+<div class="modal" id="bm"><div class="box"><button class="x" data-close aria-label="Close">×</button><h2>Book Fernando</h2><div data-form></div></div></div>
+<!-- Speaking reel modal: replace the placeholder div with a real video embed -->
+<div class="modal" id="rm"><div class="box"><button class="x" data-close aria-label="Close">×</button><div class="vid" style="cursor:default">Speaking reel placeholder: embed video here</div></div></div>
+
+<!-- Page behavior: menu toggle, modals, and form injection.
+     Loaded last so the elements above already exist when it runs. -->
+<script src="script.js"></script>
+</body>
+</html>
