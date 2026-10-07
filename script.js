@@ -7,6 +7,7 @@ const M=[["M","Meet Your Truth","Name what you are carrying and stop performing 
 // Optional second argument limits the search to inside a parent element.
 const $=(s,r=document)=>[...r.querySelectorAll(s)];
 
+/*i can delete this*/
 /* ============ BUILD THE M.A.S.K. CARDS ============ */
 // Home page: short clickable cards (the description expands on click).
 // The "if" checks make sure this only runs on pages that have the #maskgrid container.
@@ -43,7 +44,11 @@ const mod=id=>$("#"+id)[0].classList;
 // Any "Book Fernando" button opens the booking modal
 $("[data-book]").forEach(b=>b.onclick=()=>mod("bm").add("on"));
 // Any reel button opens the speaking reel modal
-$("[data-reel],#reel").forEach(b=>b.onclick=()=>mod("rm").add("on"));
+const rf=document.getElementById("reelframe");
+$("[data-reel],#reel").forEach(b=>b.onclick=()=>{if(rf)rf.src=rf.dataset.src;mod("rm").add("on")});
+const stopReel=()=>{if(rf)rf.src="about:blank"};
+$("[data-close]").forEach(b=>b.addEventListener("click",stopReel));
+$(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)stopReel()}));
 // The × button closes all modals
 $("[data-close]").forEach(b=>b.onclick=()=>$(".modal").forEach(m=>m.classList.remove("on")));
 // Clicking the dark backdrop (but not the white box inside) also closes the modal
