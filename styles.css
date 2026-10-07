@@ -296,9 +296,124 @@ blockquote.q-banner::before,blockquote.q-banner::after{display:none}
   }
 }
 
+/*
+.card-box {
+  background: linear-gradient(145deg, #1d2636 0%, #151c28 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 3px solid var(--teal);
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gold highlight for top feature cards */
+/*
+.card-box:nth-child(1),
+.card-box:nth-child(3) {
+  border-top-color: var(--gold-border);
+}
+
+.card-box:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.2);
+  border-top-color: var(--gold-border);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5),
+              0 0 20px rgba(35, 139, 139, 0.15);
+}
+
+.card-box h3 {
+  color: #FFFFFF !important;
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.card-box p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(245, 243, 238, 0.75);
+  margin: 0;
+}
+
+.card-icon {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(35, 139, 139, 0.12);
+  border-radius: 50%;
+  color: var(--teal);
+}
+*/
+
+.card-box {
+  background: linear-gradient(145deg, #1d2636 0%, #151c28 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 3px solid var(--teal); /* All cards default to teal top border */
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-icon {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(35, 139, 139, 0.12); /* Default teal icon background */
+  border-radius: 50%;
+  color: var(--teal);                   /* Default teal icon color */
+  transition: all 0.3s ease;
+}
+
+/* HOVER STATE: Turns border & icon GOLD on hover for ALL cards */
+.card-box:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.2);
+  border-top-color: var(--gold-border);  /* Top border shifts to gold */
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5),
+              0 0 20px rgba(226, 192, 103, 0.2);
+}
+
+.card-box:hover .card-icon {
+  color: #E2C067;                         /* Icon turns gold */
+  background: rgba(226, 192, 103, 0.15);  /* Icon background turns gold tint */
+}
 
 
+/* Hidden base state */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
 
+/* Visible active state triggered by JS */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: Staggered animation for grid items */
+.grid-3col .card-box:nth-child(2) { transition-delay: 0.1s; }
+.grid-3col .card-box:nth-child(3) { transition-delay: 0.2s; }
+.grid-3col .card-box:nth-child(4) { transition-delay: 0.1s; }
+.grid-3col .card-box:nth-child(5) { transition-delay: 0.2s; }
+.grid-3col .card-box:nth-child(6) { transition-delay: 0.3s; }
 
 
 
