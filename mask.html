@@ -2,74 +2,212 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<!-- viewport-fit=cover lets the page extend edge to edge on notched phones -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The M.A.S.K. Framework | Fernando Velasco</title>
-
-<!-- Google Fonts: Inter for body text, Montserrat (heavy weights) for headings -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
-<!-- Site-wide styles shared by every page -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+
+<style>
+  :root{--navy:#0B1020;--gold:#D4AF37;--gold-grad:linear-gradient(135deg,#E2C067 0%,#C39838 50%,#9E7422 100%);--gold-border:#E2C067;--teal:#238B8B;--teal-lt:#5EC4C4;--white:#F5F3EE;--card:#1B2330;--band:#111a2e}
+  body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;overflow-x:clip}
+  h1,h2,h3{color:var(--white)}
+  .sec{padding:80px 0}
+  .band{background:var(--band);border-block:1px solid rgba(255,255,255,.08)}
+  .light{background:var(--white);color:#1F2937}
+  .light h2,.light h3{color:#0B1020}
+  .light p{color:#374151}
+
+  .badge-tag{display:inline-block;background:var(--teal);color:var(--navy);font-size:.75rem;font-weight:800;text-transform:uppercase;padding:6px 14px;border-radius:4px;letter-spacing:1px;margin-bottom:12px}
+  .btn-gold{background:var(--gold-grad);color:#0B1020;font-weight:800;padding:12px 24px;border-radius:6px;border:1px solid var(--gold-border);cursor:pointer;text-transform:uppercase;letter-spacing:.5px;box-shadow:0 4px 14px rgba(195,152,56,.35);transition:transform .2s,box-shadow .2s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+  .btn-gold:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(195,152,56,.45)}
+  .btn-teal-outline{background:transparent;color:var(--white);border:1px solid var(--teal);font-weight:600;padding:12px 24px;border-radius:6px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:background .2s}
+  .btn-teal-outline:hover{background:rgba(35,139,139,.15)}
+
+  .hl{background:linear-gradient(transparent 58%,rgba(35,139,139,.3) 58%);padding:0 .1em;font-weight:700}
+  .pop{color:var(--teal-lt)}
+  .grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+
+  /* photo placeholders + frames */
+  .pic{margin:0;position:relative;isolation:isolate}
+  .pic::after{content:"";position:absolute;inset:16px -16px -16px 16px;border:2px solid var(--teal);border-radius:14px;z-index:-1}
+  .ph{min-height:260px;background:var(--card);border:2px dashed rgba(255,255,255,.18);border-radius:14px;display:grid;place-items:center;color:rgba(245,243,238,.55);font-weight:600;text-align:center;padding:20px}
+  .light .ph{background:#e5e7eb;border-color:#9ca3af;color:#6b7280}
+  .pic.tall .ph{aspect-ratio:4/5}
+  .pic.wide .ph{aspect-ratio:3/2}
+
+  /* the four letters */
+  .letter-row{display:grid;grid-template-columns:5fr 6fr;gap:56px;align-items:center}
+  .letter-row.rev{grid-template-columns:6fr 5fr}
+  .letter-row.rev .big-l{order:2}
+  .big-l{aspect-ratio:1/1;max-width:340px;width:100%;margin:0 auto;border-radius:24px;border:2px solid var(--teal);background:radial-gradient(circle at 30% 25%,rgba(35,139,139,.28),var(--card) 70%);display:grid;place-items:center;font:900 clamp(7rem,16vw,12rem)/1 Montserrat,sans-serif;box-shadow:0 18px 40px rgba(0,0,0,.35);transform:rotate(-3deg);transition:transform .3s}
+  .letter-row.rev .big-l{transform:rotate(3deg)}
+  .big-l:hover{transform:rotate(0) scale(1.03)}
+  .big-l span{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .letter-row h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin:0 0 16px;font-weight:800}
+  .letter-row p{font-size:1.15rem;line-height:1.8;opacity:.95;margin:0}
+
+  /* what it builds */
+  .build-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+  .build{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:26px;transition:transform .25s,border-color .25s}
+  .build:hover{transform:translateY(-5px);border-color:var(--teal)}
+  .build b{display:block;font:900 2rem/1 Montserrat,sans-serif;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}
+  .build h3{font-size:1.1rem;margin:0}
+
+  .strip-photos{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 20px 18px}
+  .strip-photos .ph{flex:0 0 min(300px,72vw);height:340px;scroll-snap-align:center}
+
+  .cta-band{background:linear-gradient(135deg,#0f3d3d,#0B1020 70%);clip-path:polygon(0 7%,100% 0,100% 100%,0 100%);padding:130px 0 90px}
+
+  .build-grid>.fade:nth-child(4n+2){transition-delay:.1s}
+  .build-grid>.fade:nth-child(4n+3){transition-delay:.2s}
+  .build-grid>.fade:nth-child(4n+4){transition-delay:.3s}
+
+  @media(max-width:768px){.grid-2col,.letter-row,.letter-row.rev{grid-template-columns:1fr;gap:32px}.letter-row.rev .big-l{order:0}.pic::after{display:none}.big-l,.letter-row.rev .big-l{transform:none;max-width:240px}}
+</style>
 </head>
 <body>
 
-<!-- ============ HEADER / NAVIGATION ============ -->
+<!-- ============ HEADER ============ -->
 <header><div class="wrap">
 <a class="logo" href="home.html">FERNANDO VELASCO</a>
-<!-- Main nav; same links on every page -->
 <nav id="nav"><a href="home.html">Home</a><a href="speaking.html">Speaking</a><a href="mask.html">M.A.S.K. Framework</a><a href="about.html">About</a><a href="impact.html">Impact</a></nav>
 <div style="display:flex;gap:10px;align-items:center">
-  <!-- data-book: script.js uses this attribute to open the booking modal -->
-  <button class="btn sm" data-book>Book Fernando</button>
-  <!-- Hamburger button that shows/hides the nav on small screens -->
+  <button class="btn-gold" style="padding:8px 16px;font-size:.85rem" data-book>Book Fernando</button>
   <button class="menu" id="menu" aria-label="Menu">☰</button>
 </div>
 </div></header>
 
 <main>
 <!-- ============ HERO ============ -->
-<section class="hero"><div class="wrap">
-  <h1>Taking off the mask is a practice.</h1>
-  <p>High performers do not need another reminder to work hard. They need a way to stay honest, connected, supported, and grounded while they do it.</p>
-</div></section>
+<section class="sec" style="background:radial-gradient(circle at 80% 30%,rgba(35,139,139,.22),transparent 50%),var(--navy)">
+  <div class="wrap fade" style="max-width:1100px">
+    <div class="grid-2col">
+      <div>
+        <span class="badge-tag">THE FRAMEWORK</span>
+        <h1 style="font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1.1;margin-bottom:24px;font-weight:900">TAKING OFF THE MASK IS A <span class="pop">PRACTICE.</span></h1>
+        <p style="font-size:1.25rem;line-height:1.6;opacity:.9;margin-bottom:28px">High performers do not need another reminder to work hard. They need a way to stay honest, connected, supported, and grounded while they do it.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap">
+          <button class="btn-gold" data-book>Bring M.A.S.K. to your organization</button>
+          <a href="about.html" class="btn-teal-outline">Meet Fernando</a>
+        </div>
+      </div>
+      <figure class="pic tall"><div class="ph">[ Hero Photo Placeholder: Fernando on stage ]</div></figure>
+    </div>
+  </div>
+</section>
 
-<!-- ============ WHY IT EXISTS ============ -->
-<section class="b"><div class="wrap fade" style="max-width:760px">
-  <h2>Why it exists</h2>
-  <p>Fernando developed the M.A.S.K. framework through his own pain, transition, and years working with high performers. It came from a simple realization: the people who look the strongest are often the people everyone forgets to check on.</p>
-  <p>M.A.S.K. gives people a language for doing that work before something breaks.</p>
-</div></section>
+<!-- ============ WHY M.A.S.K. EXISTS (light) ============ -->
+<section class="sec light">
+  <div class="wrap fade" style="max-width:1100px">
+    <div class="grid-2col">
+      <figure class="pic wide"><div class="ph">[ Photo Placeholder: Fernando with an audience or team ]</div></figure>
+      <div>
+        <span class="badge-tag">THE BEGINNING</span>
+        <h2 style="font-size:clamp(2rem,3.5vw,2.8rem);margin-bottom:24px;font-weight:800">Why M.A.S.K. Exists</h2>
+        <p style="font-size:1.15rem;line-height:1.8;margin-bottom:20px">Fernando built M.A.S.K. from his own experience with pressure, achievement, transition, and mental health, and from years working with high performers. It came from one realization: <span class="hl">the people who look strongest on the outside may be carrying the most underneath.</span></p>
+        <p style="font-size:1.3rem;font-weight:800;color:var(--teal);margin-top:24px">M.A.S.K. gives people a shared language to act before something breaks.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- ============ THE FOUR LETTERS ============ -->
-<section class="b alt"><div class="wrap fade"><div class="grid g2">
-  <div class="card"><div class="mask"><div class="l">M</div></div><h3>Meet Your Truth</h3>
-    <p>Stop performing for yourself. Name what is real, what hurts, what is working, and what needs attention.</p></div>
-  <div class="card"><div class="mask"><div class="l">A</div></div><h3>Ask for Help</h3>
-    <p>High achievement can teach people to rely on themselves. Asking for help interrupts isolation and creates connection before pressure becomes crisis.</p></div>
-  <div class="card"><div class="mask"><div class="l">S</div></div><h3>Systems Save Lives</h3>
-    <p>Motivation changes. Systems remain. Build rhythms, relationships, professional support, and environments that still work when life gets heavy.</p></div>
-  <div class="card"><div class="mask"><div class="l">K</div></div><h3>Know Your Identity</h3>
-    <p>Roles change. Careers end. Titles disappear. Outcomes shift. A strong identity gives people something deeper to stand on when performance changes.</p></div>
-</div></div></section>
+<!-- ============ M ============ -->
+<section class="sec">
+  <div class="wrap fade" style="max-width:1100px"><div class="letter-row">
+    <div class="big-l"><span>M</span></div>
+    <div><h2>Meet Your Truth</h2><p>You cannot address what you refuse to acknowledge. Get honest about what is real, what is working, what hurts, and what needs attention.</p></div>
+  </div></div>
+</section>
 
-<!-- ============ CTA ============ -->
-<section class="b dark"><div class="wrap fade" style="text-align:center">
-  <button class="btn" data-book>Bring the M.A.S.K. Framework to your organization</button>
-</div></section>
+<!-- ============ A ============ -->
+<section class="sec band">
+  <div class="wrap fade" style="max-width:1100px"><div class="letter-row rev">
+    <div class="big-l"><span>A</span></div>
+    <div><h2>Ask for Help</h2><p>High achievement teaches people to rely on themselves. Independence can quietly become isolation. Asking for help is part of strength, and it works best before pressure becomes crisis.</p></div>
+  </div></div>
+</section>
+
+<!-- ============ S ============ -->
+<section class="sec">
+  <div class="wrap fade" style="max-width:1100px"><div class="letter-row">
+    <div class="big-l"><span>S</span></div>
+    <div><h2>Systems Save Lives</h2><p>Motivation changes. Circumstances change. Energy changes. Systems give you something to lean on when they do: routines, relationships, professional support, boundaries, and environments that hold up when life gets heavy.</p></div>
+  </div></div>
+</section>
+
+<!-- ============ K ============ -->
+<section class="sec band">
+  <div class="wrap fade" style="max-width:1100px"><div class="letter-row rev">
+    <div class="big-l"><span>K</span></div>
+    <div><h2>Know Your Identity</h2><p>Roles change. Careers end. Titles disappear. If identity depends on performance, every transition becomes a threat. Build a sense of self that is deeper than achievement.</p></div>
+  </div></div>
+</section>
+
+<!-- ============ WHAT M.A.S.K. BUILDS ============ -->
+<section class="sec">
+  <div class="wrap" style="max-width:1100px">
+    <div class="fade" style="text-align:center;max-width:700px;margin:0 auto 50px">
+      <span class="badge-tag">THE RESULT</span>
+      <h2 style="font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800">What M.A.S.K. Builds</h2>
+    </div>
+    <div class="build-grid">
+      <div class="build fade"><b>01</b><h3>Self-awareness</h3></div>
+      <div class="build fade"><b>02</b><h3>Honest communication</h3></div>
+      <div class="build fade"><b>03</b><h3>Earlier help-seeking</h3></div>
+      <div class="build fade"><b>04</b><h3>Stronger support systems</h3></div>
+      <div class="build fade"><b>05</b><h3>Grounded leadership</h3></div>
+      <div class="build fade"><b>06</b><h3>Identity beyond achievement</h3></div>
+      <div class="build fade"><b>07</b><h3>Sustainable high performance</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PHOTO STRIP (placeholders) ============ -->
+<section class="band" style="padding:50px 0">
+  <div class="strip-photos fade">
+    <div class="ph">[ Photo 1 ]</div><div class="ph">[ Photo 2 ]</div><div class="ph">[ Photo 3 ]</div><div class="ph">[ Photo 4 ]</div><div class="ph">[ Photo 5 ]</div>
+  </div>
+</section>
+
+<!-- ============ CLOSING BANNER ============ -->
+<section class="cta-band">
+  <div class="wrap fade" style="max-width:900px;text-align:center">
+    <h2 style="font-size:clamp(2.2rem,4vw,3.2rem);font-weight:900;margin-bottom:28px">BRING M.A.S.K. TO YOUR ORGANIZATION</h2>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <button class="btn-gold" data-book>Book Fernando</button>
+      <a href="speaking.html" class="btn-teal-outline">View Speaking Programs</a>
+    </div>
+  </div>
+</section>
 </main>
 
 <!-- ============ FOOTER ============ -->
-<footer><div class="wrap">© Fernando Velasco · <a href="speaking.html">Speaking</a> · <button class="btn sm" data-book>Book Fernando</button></div></footer>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="home.html">FERNANDO VELASCO</a>
+        <div class="social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="#111827"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><text x="12" y="20" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor" font-family="Arial,sans-serif">f</text></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><text x="12" y="19" text-anchor="middle" font-size="17" font-weight="800" fill="currentColor" font-family="Arial,sans-serif">in</text></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><text x="12" y="19" text-anchor="middle" font-size="20" font-weight="700" fill="currentColor" font-family="Arial,sans-serif">X</text></svg></a>
+        </div>
+      </div>
+      <div><h4>Quick Links</h4><a href="home.html">Home</a><a href="speaking.html">Speaking</a><a href="mask.html">M.A.S.K. Framework</a><a href="about.html">About</a><a href="impact.html">Impact</a></div>
+      <div><h4>Book Fernando</h4><p>Bring a keynote on high performance without hiding to your next event.</p><button class="btn-gold" style="padding:8px 16px;font-size:.85rem" data-book>Book Fernando</button></div>
+      <div><h4>Contact</h4><p>✉ <a href="mailto:EMAIL@YOURDOMAIN.COM">EMAIL@YOURDOMAIN.COM</a></p><p>📍 CITY, STATE</p></div>
+    </div>
+    <p class="foot-copy">© 2026 Fernando Velasco. All rights reserved.</p>
+  </div>
+</footer>
 
-<!-- ============ MODALS (hidden until opened by script.js) ============ -->
-<!-- Booking modal: script.js injects the booking form into [data-form] -->
+<!-- ============ MODALS ============ -->
 <div class="modal" id="bm"><div class="box"><button class="x" data-close aria-label="Close">×</button><h2>Book Fernando</h2><div data-form></div></div></div>
-<!-- Speaking reel modal: replace the placeholder div with a real video embed -->
 <div class="modal" id="rm"><div class="box"><button class="x" data-close aria-label="Close">×</button><div class="vid" style="cursor:default">Speaking reel placeholder: embed video here</div></div></div>
 
-<!-- Page behavior: menu toggle, modals, and framework card injection.
-     Loaded last so the elements above already exist when it runs. -->
 <script src="script.js"></script>
 </body>
 </html>
