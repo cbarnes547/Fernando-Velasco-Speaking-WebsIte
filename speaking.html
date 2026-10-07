@@ -2,62 +2,222 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<!-- viewport-fit=cover lets the page extend edge to edge on notched phones -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Speaking | Fernando Velasco</title>
-
-<!-- Google Fonts: Inter for body text, Montserrat (heavy weights) for headings -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
-<!-- Site-wide styles shared by every page -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+
+<style>
+  :root{--navy:#0B1020;--gold:#D4AF37;--gold-grad:linear-gradient(135deg,#E2C067 0%,#C39838 50%,#9E7422 100%);--gold-border:#E2C067;--teal:#238B8B;--teal-lt:#5EC4C4;--white:#F5F3EE;--card:#1B2330;--band:#111a2e}
+  body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;overflow-x:clip}
+  h1,h2,h3{color:var(--white)}
+  .sec{padding:80px 0}
+  .band{background:var(--band);border-block:1px solid rgba(255,255,255,.08)}
+  .light{background:var(--white);color:#1F2937}
+  .light h2,.light h3{color:#0B1020}
+  .light p{color:#374151}
+  .center{text-align:center;max-width:720px;margin:0 auto 50px}
+
+  .badge-tag{display:inline-block;background:var(--teal);color:var(--navy);font-size:.75rem;font-weight:800;text-transform:uppercase;padding:6px 14px;border-radius:4px;letter-spacing:1px;margin-bottom:12px}
+  .btn-gold{background:var(--gold-grad);color:#0B1020;font-weight:800;padding:12px 24px;border-radius:6px;border:1px solid var(--gold-border);cursor:pointer;text-transform:uppercase;letter-spacing:.5px;box-shadow:0 4px 14px rgba(195,152,56,.35);transition:transform .2s,box-shadow .2s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+  .btn-gold:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(195,152,56,.45)}
+  .btn-teal-outline{background:transparent;color:var(--white);border:1px solid var(--teal);font-weight:600;padding:12px 24px;border-radius:6px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:background .2s}
+  .btn-teal-outline:hover{background:rgba(35,139,139,.15)}
+  .pop{color:var(--teal-lt)}
+  .hl{background:linear-gradient(transparent 58%,rgba(35,139,139,.3) 58%);padding:0 .1em;font-weight:700}
+  .grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+
+  /* hero + reel */
+  .vid-wrap{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;box-shadow:0 22px 50px rgba(0,0,0,.5);border:2px solid var(--teal);background:#000}
+  .vid-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+  /* photo placeholders */
+  .pic{margin:0;position:relative;isolation:isolate}
+  .pic::after{content:"";position:absolute;inset:16px -16px -16px 16px;border:2px solid var(--teal);border-radius:14px;z-index:-1}
+  .ph{min-height:200px;background:var(--card);border:2px dashed rgba(255,255,255,.18);border-radius:14px;display:grid;place-items:center;color:rgba(245,243,238,.55);font-weight:600;text-align:center;padding:20px}
+  .light .ph{background:#e5e7eb;border-color:#9ca3af;color:#6b7280}
+  .pic.tall .ph{aspect-ratio:4/5}
+
+  /* keynote */
+  .kt-sub{font:800 clamp(1.2rem,2.6vw,1.8rem)/1.2 Montserrat,sans-serif;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin:0 0 22px}
+  .callout{font-size:1.25rem;font-weight:800;color:var(--teal);margin:24px 0}
+  .pills{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:8px}
+  .pills small{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.75rem;opacity:.7;margin-right:6px}
+  .pill{background:var(--navy);color:var(--white);padding:8px 16px;border-radius:99px;font-weight:700;font-size:.85rem;border:1px solid var(--teal)}
+
+  /* leave-with cards */
+  .check-card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:26px 26px 26px 78px;position:relative;transition:transform .25s,border-color .25s;line-height:1.6}
+  .check-card:hover{transform:translateY(-5px);border-color:var(--teal)}
+  .check-card::before{content:"✓";position:absolute;left:24px;top:24px;width:38px;height:38px;border-radius:50%;background:rgba(35,139,139,.22);color:var(--teal-lt);display:grid;place-items:center;font-weight:900}
+
+  /* audience cards */
+  .aud{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;transition:transform .25s,border-color .25s}
+  .aud:hover{transform:translateY(-5px);border-color:var(--teal)}
+  .aud .ph{border-radius:0;border:0;border-bottom:2px dashed rgba(255,255,255,.18);min-height:190px}
+  .aud div.t{padding:26px}
+  .aud h3{margin:0 0 10px;font-size:1.2rem}
+  .aud p{margin:0;opacity:.9;line-height:1.7}
+
+  /* right room */
+  .room{background:linear-gradient(135deg,#0f3d3d,#0B1020 75%)}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .chips span{border:1px solid var(--teal);padding:8px 16px;border-radius:99px;font-weight:600;font-size:.9rem;background:rgba(35,139,139,.12)}
+
+  /* testimonials */
+  .quote{background:linear-gradient(180deg,rgba(35,139,139,.14),transparent 55%),var(--card);border-top:4px solid var(--teal)}
+  .quote p{color:var(--white);font-size:1.15rem;line-height:1.6}
+  .quote .who{display:block;border-top:1px solid rgba(255,255,255,.12);padding-top:14px;font-size:.9rem;font-weight:600;color:var(--teal-lt)}
+  .quote .who strong{display:block;color:var(--white);font-size:1.05rem}
+
+  .cta-band{background:linear-gradient(135deg,#0f3d3d,#0B1020 70%);clip-path:polygon(0 5%,100% 0,100% 100%,0 100%);padding:120px 0 90px}
+  .cta-band .card{background:rgba(11,16,32,.65);border:1px solid rgba(255,255,255,.12)}
+
+  .grid-3>.fade:nth-child(3n+2){transition-delay:.12s}
+  .grid-3>.fade:nth-child(3n+3){transition-delay:.24s}
+
+  @media(max-width:768px){.grid-2col{grid-template-columns:1fr;gap:36px}.pic::after{display:none}}
+</style>
 </head>
 <body>
 
-<!-- ============ HEADER / NAVIGATION ============ -->
+<!-- ============ HEADER ============ -->
 <header><div class="wrap">
 <a class="logo" href="home.html">FERNANDO VELASCO</a>
-<!-- Main nav; same links on every page -->
 <nav id="nav"><a href="home.html">Home</a><a href="speaking.html">Speaking</a><a href="mask.html">M.A.S.K. Framework</a><a href="about.html">About</a><a href="impact.html">Impact</a></nav>
 <div style="display:flex;gap:10px;align-items:center">
-  <!-- data-book: script.js uses this attribute to open the booking modal -->
-  <button class="btn sm" data-book>Book Fernando</button>
-  <!-- Hamburger button that shows/hides the nav on small screens -->
+  <button class="btn-gold" style="padding:8px 16px;font-size:.85rem" data-book>Book Fernando</button>
   <button class="menu" id="menu" aria-label="Menu">☰</button>
 </div>
 </div></header>
 
-<main><section class="b"><div class="wrap">
-<!-- Page title; clamp() scales the font size smoothly between 2rem and 3.4rem -->
-<h1 style="font-size:clamp(2rem,5vw,3.4rem)">Speaking</h1>
+<main>
+<!-- ============ HERO + REEL ============ -->
+<section class="sec" style="background:radial-gradient(circle at 80% 20%,rgba(35,139,139,.22),transparent 50%),var(--navy);padding-bottom:90px">
+  <div class="wrap fade" style="max-width:1000px;text-align:center">
+    <span class="badge-tag">SPEAKING</span>
+    <h1 style="font-size:clamp(2rem,4.4vw,3.5rem);line-height:1.12;margin:0 auto 24px;font-weight:900;max-width:20ch">HELP YOUR PEOPLE PERFORM AT A HIGH LEVEL WITHOUT FEELING LIKE THEY HAVE TO <span class="pop">HIDE.</span></h1>
+    <p style="font-size:1.25rem;line-height:1.6;opacity:.9;margin:0 auto 28px;max-width:62ch">Fernando helps high performers and teams build trust, communicate honestly, ask for help sooner, and create the systems needed to sustain excellence.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:56px">
+      <button class="btn-gold" data-book>Book Fernando</button>
+      <a href="#reel" class="btn-teal-outline">Watch the Reel</a>
+    </div>
+    <div class="vid-wrap" id="reel">
+      <iframe src="https://player.vimeo.com/video/1233509967?badge=0&amp;autopause=0&amp;title=0&amp;byline=0&amp;portrait=0" title="Fernando Velasco speaking reel" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
 
-<!-- ============ WHAT FERNANDO OFFERS ============ -->
-<!-- Three-column card grid: keynote, workshop, and audience outcomes -->
-<div class="grid g3"><div class="card"><h3>Keynote</h3><p>The M.A.S.K. — High Performance Without Hiding. Built for conferences, leadership offsites, and athletic programs.</p></div>
-<div class="card"><h3>Workshop / Team Experience</h3><p>An interactive session that turns the framework into team habits and systems.</p></div>
-<!-- "chk" class styles each list item with a checkmark -->
-<div class="card"><h3>Audience Outcomes</h3><ul class="chk"><li>Honest conversations</li><li>Earlier help-seeking</li><li>Stronger identity</li></ul></div></div>
+<!-- ============ FLAGSHIP KEYNOTE (light) ============ -->
+<section class="sec light">
+  <div class="wrap fade" style="max-width:1100px">
+    <div class="grid-2col">
+      <div>
+        <span class="badge-tag">FLAGSHIP KEYNOTE</span>
+        <h2 style="font-size:clamp(2.2rem,4vw,3.2rem);font-weight:900;margin:0 0 8px">THE M.A.S.K.</h2>
+        <p class="kt-sub">High Performance Without Hiding</p>
+        <p style="font-size:1.12rem;line-height:1.8;margin-bottom:20px">High performers are taught to push through, produce, and deliver. They are not always taught what to do with everything they carry underneath. Fernando combines nine years in the NFL, years of player development, his own mental health journey, and the M.A.S.K. framework to help audiences recognize what high performance can hide and build a healthier way forward.</p>
+        <p class="callout">This is not about lowering expectations. It is about helping people carry them.</p>
+        <div class="pills"><small>Available as</small><span class="pill">Keynote</span><span class="pill">Workshop</span><span class="pill">Team Experience</span></div>
+      </div>
+      <figure class="pic tall"><div class="ph">[ Keynote Photo Placeholder: Fernando on stage ]</div></figure>
+    </div>
+  </div>
+</section>
 
-<!-- ============ BOOKING REASSURANCE ============ -->
-<!-- Short list meant to build confidence before the visitor fills out the form -->
-<h2 style="margin-top:48px">Booking reassurance</h2>
-<ul class="chk"><li>Customized to your audience and goals</li><li>Clear process from inquiry to event day</li><li>Prompt response to every request</li></ul>
+<!-- ============ AUDIENCES LEAVE WITH ============ -->
+<section class="sec band">
+  <div class="wrap" style="max-width:1100px">
+    <div class="center fade"><span class="badge-tag">THE TAKEAWAY</span>
+      <h2 style="font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800">Audiences Leave With</h2></div>
+    <div class="grid-3">
+      <div class="check-card fade">A shared language for talking about pressure without turning the room into therapy</div>
+      <div class="check-card fade">More honest communication between teammates, leaders, and colleagues</div>
+      <div class="check-card fade">A healthier understanding of asking for help</div>
+      <div class="check-card fade">Practical ways to build personal and professional support systems</div>
+      <div class="check-card fade">A clearer line between identity and achievement</div>
+      <div class="check-card fade">A framework they keep using after Fernando leaves</div>
+    </div>
+  </div>
+</section>
 
-<!-- ============ INLINE REQUEST FORM ============ -->
-<!-- Empty on purpose: script.js injects the booking form into [data-form] -->
-<h2 style="margin-top:48px">Request Fernando</h2><div class="card" data-form></div></div></section></main>
+<!-- ============ WHO FERNANDO SPEAKS TO ============ -->
+<section class="sec">
+  <div class="wrap" style="max-width:1100px">
+    <div class="center fade"><span class="badge-tag">AUDIENCES</span>
+      <h2 style="font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800">Who Fernando Speaks To</h2></div>
+    <div class="grid-3">
+      <div class="aud fade"><div class="ph">[ Corporate Photo Placeholder ]</div><div class="t"><h3>Corporate Leaders &amp; Teams</h3><p>For organizations that want high performance without a culture where people hide challenges, struggle alone, or pretend everything is fine.</p></div></div>
+      <div class="aud fade"><div class="ph">[ Athletes Photo Placeholder ]</div><div class="t"><h3>Professional &amp; Collegiate Athletes</h3><p>For athletes navigating pressure, identity, transition, and life beyond the game. Fernando understands the locker room because he lived in it.</p></div></div>
+      <div class="aud fade"><div class="ph">[ Universities Photo Placeholder ]</div><div class="t"><h3>Universities &amp; Emerging Leaders</h3><p>For students and young leaders learning how ambition, identity, relationships, and mental wellness shape who they are becoming.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE RIGHT ROOM ============ -->
+<section class="sec room band">
+  <div class="wrap fade" style="max-width:1000px;text-align:center">
+    <span class="badge-tag">EVERY ENGAGEMENT</span>
+    <h2 style="font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800;margin-bottom:20px">The Right Room</h2>
+    <p style="font-size:1.2rem;line-height:1.8;max-width:62ch;margin:0 auto">Locker rooms, leadership meetings, corporate events, auditoriums, universities, and small groups. Every engagement is shaped around the audience, the pressure they carry, and the conversation the organization needs to have.</p>
+    <div class="chips" style="justify-content:center"><span>Locker rooms</span><span>Leadership meetings</span><span>Corporate events</span><span>Auditoriums</span><span>Universities</span><span>Small groups</span></div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="sec">
+  <div class="wrap" style="max-width:1100px">
+    <div class="center fade"><span class="badge-tag">KIND WORDS</span>
+      <h2 style="font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800">Don't just take Fernando's word for it.</h2></div>
+    <div class="grid-3">
+      <div class="card quote fade"><p>"Anytime you are talking about revealing yourself and taking off your mask, it really hits home and makes an impact on our entire team!"</p><span class="who"><strong>Morris Butler</strong>Co-President | Butler Automotive Group</span></div>
+      <div class="card quote fade"><p>"I want to say thank you to Fernando for helping bring awareness to these topics, but also making impact."</p><span class="who"><strong>Josh Marriner</strong>Director of Player Engagement | Arizona Cardinals</span></div>
+      <div class="card quote fade"><p>"Helping other people claim the potential they have in themselves."</p><span class="who"><strong>Tim Baucom</strong>Chief Executive Officer &amp; President | Shaw Industries</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ START A CONVERSATION (inquiry form) ============ -->
+<section class="cta-band" id="book">
+  <div class="wrap fade" style="max-width:1000px">
+    <div class="grid-2col" style="align-items:start">
+      <div>
+        <h2 style="font-size:clamp(2.2rem,4vw,3.2rem);font-weight:900;margin-bottom:20px">START A CONVERSATION</h2>
+        <p style="font-size:1.2rem;line-height:1.7;opacity:.9">Tell us about your event, your audience, and what your people are carrying. We'll respond with availability and next steps.</p>
+      </div>
+      <div class="card" data-form></div>
+    </div>
+  </div>
+</section>
+</main>
 
 <!-- ============ FOOTER ============ -->
-<footer><div class="wrap">© Fernando Velasco · <a href="speaking.html">Speaking</a> · <button class="btn sm" data-book>Book Fernando</button></div></footer>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="home.html">FERNANDO VELASCO</a>
+        <div class="social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="#111827"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><text x="12" y="20" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor" font-family="Arial,sans-serif">f</text></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><text x="12" y="19" text-anchor="middle" font-size="17" font-weight="800" fill="currentColor" font-family="Arial,sans-serif">in</text></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><text x="12" y="19" text-anchor="middle" font-size="20" font-weight="700" fill="currentColor" font-family="Arial,sans-serif">X</text></svg></a>
+        </div>
+      </div>
+      <div><h4>Quick Links</h4><a href="home.html">Home</a><a href="speaking.html">Speaking</a><a href="mask.html">M.A.S.K. Framework</a><a href="about.html">About</a><a href="impact.html">Impact</a></div>
+      <div><h4>Book Fernando</h4><p>Bring a keynote on high performance without hiding to your next event.</p><button class="btn-gold" style="padding:8px 16px;font-size:.85rem" data-book>Book Fernando</button></div>
+      <div><h4>Contact</h4><p>✉ <a href="mailto:EMAIL@YOURDOMAIN.COM">EMAIL@YOURDOMAIN.COM</a></p><p>📍 CITY, STATE</p></div>
+    </div>
+    <p class="foot-copy">© 2026 Fernando Velasco. All rights reserved.</p>
+  </div>
+</footer>
 
-<!-- ============ MODALS (hidden until opened by script.js) ============ -->
-<!-- Booking modal: a second copy of the form is injected into its [data-form] -->
+<!-- ============ MODALS ============ -->
 <div class="modal" id="bm"><div class="box"><button class="x" data-close aria-label="Close">×</button><h2>Book Fernando</h2><div data-form></div></div></div>
-<!-- Speaking reel modal: replace the placeholder div with a real video embed -->
-<div class="modal" id="rm"><div class="box"><button class="x" data-close aria-label="Close">×</button><div class="vid" style="cursor:default">Speaking reel placeholder: embed video here</div></div></div>
+<div class="modal" id="rm"><div class="box"><button class="x" data-close aria-label="Close">×</button><div class="vid" style="cursor:default">Speaking reel placeholder</div></div></div>
 
-<!-- Page behavior: menu toggle, modals, and form injection.
-     Loaded last so the elements above already exist when it runs. -->
 <script src="script.js"></script>
 </body>
 </html>
