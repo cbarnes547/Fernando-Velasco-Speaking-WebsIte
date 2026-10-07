@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book Fernando | Speaking Inquiry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  :root{--navy:#0B1020;--gold:#D4AF37;--gold-grad:linear-gradient(135deg,#E2C067 0%,#C39838 50%,#9E7422 100%);--gold-border:#E2C067;--teal:#238B8B;--teal-lt:#5EC4C4;--white:#F5F3EE;--card:#1B2330;--band:#111a2e}
+  body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;overflow-x:clip}
+  h1,h2,h3{color:var(--white)}
+  .sec{padding:80px 0}
+  .badge-tag{display:inline-block;background:var(--teal);color:var(--navy);font-size:.75rem;font-weight:800;text-transform:uppercase;padding:6px 14px;border-radius:4px;letter-spacing:1px;margin-bottom:12px}
+  .btn-gold{background:var(--gold-grad);color:#0B1020;font-weight:800;padding:12px 24px;border-radius:6px;border:1px solid var(--gold-border);cursor:pointer;text-transform:uppercase;letter-spacing:.5px;box-shadow:0 4px 14px rgba(195,152,56,.35);transition:transform .2s,box-shadow .2s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;font-family:inherit;font-size:.95rem}
+  .btn-gold:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(195,152,56,.45)}
+  .pop{color:var(--teal-lt)}
+
+  .book-grid{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:start}
+  .side{position:sticky;top:96px}
+
+  /* photo placeholder + testimonial */
+  .pic{margin:0 0 36px;position:relative;isolation:isolate}
+  .pic::after{content:"";position:absolute;inset:16px -16px -16px 16px;border:2px solid var(--teal);border-radius:14px;z-index:-1}
+  .ph{aspect-ratio:4/3;background:var(--card);border:2px dashed rgba(255,255,255,.18);border-radius:14px;display:grid;place-items:center;color:rgba(245,243,238,.55);font-weight:600;text-align:center;padding:20px}
+  .mini-quote{border-left:4px solid var(--teal);padding-left:20px;font-size:1.05rem;line-height:1.6;margin:0}
+  .mini-quote span{display:block;margin-top:10px;font-size:.85rem;font-weight:600;color:var(--teal-lt)}
+
+  /* the form card */
+  .form-card{background:var(--card);border:1px solid rgba(255,255,255,.1);border-top:4px solid var(--teal);border-radius:14px;padding:40px;box-shadow:0 22px 50px rgba(0,0,0,.35)}
+  .step{display:flex;align-items:center;gap:12px;margin:34px 0 18px;font:800 1rem Montserrat,sans-serif;text-transform:uppercase;letter-spacing:.04em}
+  .step:first-of-type{margin-top:0}
+  .step b{width:34px;height:34px;border-radius:50%;background:var(--gold-grad);color:#0B1020;display:grid;place-items:center;font-size:.95rem}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  .field{margin-bottom:16px}
+  .row .field{margin-bottom:0}
+  .f label,.f legend{display:block;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;color:rgba(245,243,238,.85)}
+  .f input,.f select,.f textarea{width:100%;background:#0f1626;color:var(--white);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:13px 14px;font:inherit;color-scheme:dark;transition:border-color .2s,box-shadow .2s}
+  .f textarea{min-height:120px;resize:vertical}
+  .f input:focus,.f select:focus,.f textarea:focus{outline:0;border-color:var(--teal-lt);box-shadow:0 0 0 3px rgba(35,139,139,.35)}
+  .f ::placeholder{color:rgba(245,243,238,.35)}
+  fieldset{border:0;padding:0;margin:0 0 16px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chips input{position:absolute;opacity:0;pointer-events:none}
+  .chips label{margin:0;cursor:pointer;border:1px solid var(--teal);border-radius:99px;padding:10px 18px;font-size:.88rem;font-weight:700;text-transform:none;letter-spacing:0;transition:background .2s}
+  .chips label:hover{background:rgba(35,139,139,.18)}
+  .chips input:checked+label{background:var(--teal);color:var(--navy)}
+  .chips input:focus-visible+label{box-shadow:0 0 0 3px rgba(94,196,196,.5)}
+  .submit{width:100%;margin-top:14px;padding:16px;font-size:1rem}
+  .thanks{text-align:center;padding:50px 10px}
+  .thanks h2{font-size:1.8rem;margin-bottom:10px}
+
+  @media(max-width:900px){.book-grid{grid-template-columns:1fr}.side{position:static}.pic::after{display:none}}
+  @media(max-width:560px){.row{grid-template-columns:1fr;margin-bottom:0}.row .field{margin-bottom:16px}.form-card{padding:26px 20px}}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header><div class="wrap">
+<a class="logo" href="home.html">FERNANDO VELASCO</a>
+<nav id="nav"><a href="home.html">Home</a><a href="speaking.html">Speaking</a><a href="mask.html">M.A.S.K. Framework</a><a href="about.html">About</a><a href="impact.html">Impact</a></nav>
+<div style="display:flex;gap:10px;align-items:center">
+  <a class="btn-gold" style="padding:8px 16px;font-size:.85rem" href="#inquiry">Book Fernando</a>
+  <button class="menu" id="menu" aria-label="Menu">☰</button>
+</div>
+</div></header>
+
+<main>
+<section class="sec" style="background:radial-gradient(circle at 15% 20%,rgba(35,139,139,.24),transparent 50%),var(--navy)">
+  <div class="wrap" style="max-width:1150px">
+    <div class="book-grid">
+
+      <!-- LEFT: heading + photo + quote -->
+      <div class="side fade">
+        <span class="badge-tag">BOOK FERNANDO</span>
+        <h1 style="font-size:clamp(2.1rem,4vw,3.3rem);line-height:1.1;margin-bottom:22px;font-weight:900">LET'S TALK ABOUT <span class="pop">YOUR PEOPLE.</span></h1>
+        <p style="font-size:1.15rem;line-height:1.7;opacity:.92;margin-bottom:36px">Tell us about the room, the people in it, the pressure they carry, and what you want to be different after Fernando leaves.</p>
+        <figure class="pic"><div class="ph">[ Photo Placeholder: Fernando with an audience ]</div></figure>
+        <blockquote class="mini-quote" style="border-left:4px solid var(--teal);padding-left:20px">
+          "Anytime you are talking about revealing yourself and taking off your mask, it really hits home and makes an impact on our entire team!"
+          <span>Morris Butler, Co-President | Butler Automotive Group</span>
+        </blockquote>
+      </div>
+
+      <!-- RIGHT: inquiry form -->
+      <div class="form-card f fade" id="inquiry">
+        <form id="inq">
+          <div class="step"><b>1</b>The Event</div>
+          <div class="field"><label for="org">Organization / Event</label><input id="org" name="organization" required></div>
+          <div class="row">
+            <div class="field"><label for="date">Event Date</label><input id="date" name="event_date" type="date"></div>
+            <div class="field"><label for="loc">Location</label><input id="loc" name="location" placeholder="City, State or Virtual"></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="aud">Audience Type</label>
+              <select id="aud" name="audience_type">
+                <option value="">Select one</option>
+                <option>Corporate Leaders &amp; Teams</option>
+                <option>Professional &amp; Collegiate Athletes</option>
+                <option>Universities &amp; Emerging Leaders</option>
+                <option>Other</option>
+              </select></div>
+            <div class="field"><label for="size">Estimated Audience Size</label><input id="size" name="audience_size" inputmode="numeric" placeholder="e.g. 150"></div>
+          </div>
+          <fieldset>
+            <legend>Preferred Format</legend>
+            <div class="chips">
+              <input type="radio" id="f1" name="format" value="Keynote"><label for="f1">Keynote</label>
+              <input type="radio" id="f2" name="format" value="Workshop"><label for="f2">Workshop</label>
+              <input type="radio" id="f3" name="format" value="Team Experience"><label for="f3">Team Experience</label>
+            </div>
+          </fieldset>
+
+          <div class="step"><b>2</b>The Conversation</div>
+          <div class="field"><label for="now">What are your people dealing with right now?</label><textarea id="now" name="challenges"></textarea></div>
+          <div class="field"><label for="goal">What do you want them to walk away with?</label><textarea id="goal" name="outcomes"></textarea></div>
+
+          <div class="step"><b>3</b>Your Contact Info</div>
+          <div class="field"><label for="name">Contact Name</label><input id="name" name="name" required autocomplete="name"></div>
+          <div class="row">
+            <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+            <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+          </div>
+
+          <button class="btn-gold submit" type="submit">Submit Speaking Inquiry</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="home.html">FERNANDO VELASCO</a>
+        <div class="social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="#111827"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><text x="12" y="20" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor" font-family="Arial,sans-serif">f</text></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><text x="12" y="19" text-anchor="middle" font-size="17" font-weight="800" fill="currentColor" font-family="Arial,sans-serif">in</text></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><text x="12" y="19" text-anchor="middle" font-size="20" font-weight="700" fill="currentColor" font-family="Arial,sans-serif">X</text></svg></a>
+        </div>
+      </div>
+      <div><h4>Quick Links</h4><a href="home.html">Home</a><a href="speaking.html">Speaking</a><a href="mask.html">M.A.S.K. Framework</a><a href="about.html">About</a><a href="impact.html">Impact</a></div>
+      <div><h4>Book Fernando</h4><p>Bring a keynote on high performance without hiding to your next event.</p><a class="btn-gold" style="padding:8px 16px;font-size:.85rem" href="#inquiry">Book Fernando</a></div>
+      <div><h4>Contact</h4><p>✉ <a href="mailto:EMAIL@YOURDOMAIN.COM">EMAIL@YOURDOMAIN.COM</a></p><p>📍 CITY, STATE</p></div>
+    </div>
+    <p class="foot-copy">© 2026 Fernando Velasco. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+/* DEMO submit: shows a thank-you message only. To really receive inquiries, connect a form service
+   (e.g. Formspree or Netlify Forms) and send the FormData there before showing the message. */
+document.getElementById('inq').addEventListener('submit',function(e){
+  e.preventDefault();
+  this.parentElement.innerHTML='<div class="thanks"><h2>Thank you.</h2><p>Your inquiry has been received. We will be in touch soon to talk about your people.</p></div>';
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+</script>
+</body>
+</html>

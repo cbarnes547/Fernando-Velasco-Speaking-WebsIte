@@ -42,7 +42,7 @@ $("button",dots).forEach((b,i)=>b.onclick=()=>show(i));setInterval(()=>show((ci+
 // Returns the classList of a modal by id so we can add/remove the "on" (visible) class
 const mod=id=>$("#"+id)[0].classList;
 // Any "Book Fernando" button opens the booking modal
-$("[data-book]").forEach(b=>b.onclick=()=>mod("bm").add("on"));
+$("[data-book]").forEach(b=>b.onclick=()=>location.href="book.html");
 // Any reel button opens the speaking reel modal
 const rf=document.getElementById("reelframe");
 $("[data-reel],#reel").forEach(b=>b.onclick=()=>{if(rf)rf.src=rf.dataset.src;mod("rm").add("on")});
