@@ -415,6 +415,10 @@ blockquote.q-banner::before,blockquote.q-banner::after{display:none}
 .grid-3col .card-box:nth-child(5) { transition-delay: 0.2s; }
 .grid-3col .card-box:nth-child(6) { transition-delay: 0.3s; }
 
+@media(min-width:821px){
+  header .wrap nav{margin-left:auto;margin-right:28px;gap:26px}
+}
+
 
 
 
