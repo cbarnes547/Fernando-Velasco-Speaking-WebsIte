@@ -68,6 +68,9 @@
     .thanks h2 { font-size: 1.8rem; margin-bottom: 10px; }
     @media (max-width: 900px) { .book-grid { grid-template-columns: 1fr; } .side { position: static; } .pic::after { display: none; } }
     @media (max-width: 560px) { .row { grid-template-columns: 1fr; margin-bottom: 0; } .row .field { margin-bottom: 16px; } .form-card { padding: 26px 20px; } }
+  
+    .pic img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;border-radius:14px;display:block}
+    
   </style>
 </head>
 <body>
@@ -100,7 +103,7 @@
               Tell us about the room, the people in it, the pressure they carry, and what you want to be different after Fernando leaves.
             </p>
             <figure class="pic">
-              <div class="ph">[ Photo Placeholder: Fernando with an audience ]</div>
+              <img src="assets/images/fv-conversation.jpg" alt="Fernando Velasco" style="object-position:center top">
             </figure>
             <blockquote class="mini-quote">
               "Anytime you are talking about revealing yourself and taking off your mask, it really hits home and makes an impact on our entire team!"
