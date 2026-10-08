@@ -63,6 +63,17 @@
   .build-grid>.fade:nth-child(4n+3){transition-delay:.2s}
   .build-grid>.fade:nth-child(4n+4){transition-delay:.3s}
 
+  .pic img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:14px;display:block;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+  .pic.tall img{aspect-ratio:4/5}
+
+  .photo-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .photo-track{display:flex;width:max-content;animation:photoscroll 70s linear infinite}
+  .photo-marquee:hover .photo-track{animation-play-state:paused}
+  .photo-set{display:flex}
+  .photo-set img{flex:0 0 auto;width:min(300px,72vw);height:380px;object-fit:cover;border-radius:14px;margin-right:16px;display:block}
+  @keyframes photoscroll{to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){.photo-track{animation:none}.photo-marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}}
+
   @media(max-width:768px){.grid-2col,.letter-row,.letter-row.rev{grid-template-columns:1fr;gap:32px}.letter-row.rev .big-l{order:0}.pic::after{display:none}.big-l,.letter-row.rev .big-l{transform:none;max-width:240px}}
 </style>
 </head>
@@ -92,7 +103,7 @@
           <a href="about.html" class="btn-teal-outline">Meet Fernando</a>
         </div>
       </div>
-      <figure class="pic tall"><div class="ph">[ Hero Photo Placeholder: Fernando on stage ]</div></figure>
+      <figure class="pic tall"><img src="assets/images/fv-uga.jpg" alt="Fernando Velasco speaking with an audience"></figure>
     </div>
   </div>
 </section>
@@ -101,7 +112,7 @@
 <section class="sec light">
   <div class="wrap fade" style="max-width:1100px">
     <div class="grid-2col">
-      <figure class="pic wide"><div class="ph">[ Photo Placeholder: Fernando with an audience or team ]</div></figure>
+      <figure class="pic wide"><img src="assets/images/OB_UGA_060826_33.jpg" alt="Fernando Velasco speaking with an audience"></figure>
       <div>
         <span class="badge-tag">THE BEGINNING</span>
         <h2 style="font-size:clamp(2rem,3.5vw,2.8rem);margin-bottom:24px;font-weight:800">Why M.A.S.K. Exists</h2>
@@ -163,10 +174,36 @@
   </div>
 </section>
 
-<!-- ============ PHOTO STRIP (placeholders) ============ -->
+<!-- ============ PHOTO STRIP (auto-scrolling) ============ -->
 <section class="band" style="padding:50px 0">
-  <div class="strip-photos fade">
-    <div class="ph">[ Photo 1 ]</div><div class="ph">[ Photo 2 ]</div><div class="ph">[ Photo 3 ]</div><div class="ph">[ Photo 4 ]</div><div class="ph">[ Photo 5 ]</div>
+  <div class="photo-marquee fade">
+    <div class="photo-track">
+
+      <!-- set 1 -->
+      <div class="photo-set">
+        <img src="assets/images/IMG_1849.jpeg" alt="Fernando Velasco presenting" style="object-position:75% center">
+        <img src="assets/images/IMG_9711.png" alt="Fernando Velasco in conversation">
+        <img src="assets/images/IMG_5379.jpeg" alt="Fernando Velasco speaking at the University of Georgia" style="object-position:40% center">
+        <img src="assets/images/IMG_1847.jpeg" alt="Fernando Velasco with a bulldog statue">
+        <img src="assets/images/IMG_5378.jpeg" alt="Fernando Velasco in conversation">
+        <img src="assets/images/IMG_5380.jpeg" alt="Fernando Velasco speaking at the University of Georgia" style="object-position:40% center">
+        <img src="assets/images/IMG_1845.jpeg" alt="Fernando Velasco with a bulldog statue">
+        <img src="assets/images/fv-table-laugh.jpg" alt="Fernando Velasco at a leadership dinner" style="object-position:40% center">
+      </div>
+
+      <!-- set 2: exact copy of set 1 (hidden from screen readers) -->
+      <div class="photo-set" aria-hidden="true">
+        <img src="assets/images/IMG_1849.jpeg" alt="" style="object-position:75% center">
+        <img src="assets/images/IMG_9711.png" alt="">
+        <img src="assets/images/IMG_5379.jpeg" alt="" style="object-position:40% center">
+        <img src="assets/images/IMG_1847.jpeg" alt="">
+        <img src="assets/images/IMG_5378.jpeg" alt="">
+        <img src="assets/images/IMG_5380.jpeg" alt="" style="object-position:40% center">
+        <img src="assets/images/IMG_1845.jpeg" alt="">
+        <img src="assets/images/fv-table-laugh.jpg" alt="" style="object-position:40% center">
+      </div>
+
+    </div>
   </div>
 </section>
 
