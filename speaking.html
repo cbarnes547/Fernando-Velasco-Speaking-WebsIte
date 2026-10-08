@@ -77,6 +77,59 @@
   .grid-3>.fade:nth-child(3n+2){transition-delay:.12s}
   .grid-3>.fade:nth-child(3n+3){transition-delay:.24s}
 
+  .keynote-light {
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0;
+  background-color: #ffffff;
+  }
+
+  /* Flex layout on wrapper to position text and cutout side-by-side */
+  .keynote-light .wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  }
+
+ .kt-cutout {
+  position: absolute;
+  right: -45px; /* Pulls him over to the right margin */
+  bottom: -213px;
+  height: 160%; /* Restores original large size */
+  max-height: none; /* Removes height caps */
+  width: auto;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 1;
+  }
+
+  .kt-text {
+    max-width: 540px; /* Ensures text stays neatly in its left column */
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Remove pseudo-element image overlay */
+  .keynote-light::after {
+    display: none;
+  }
+
+  /* Responsive adjustments for mobile */
+  @media (max-width: 820px) {
+    .keynote-light .wrap {
+      flex-direction: column;
+    }
+    .kt-cutout {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      margin-top: 32px;
+      max-width: 100%;
+    }
+  }
+
   @media(max-width:768px){.grid-2col{grid-template-columns:1fr;gap:36px}.pic::after{display:none}}
 </style>
 </head>
@@ -108,20 +161,20 @@
   </div>
 </section>
 
-<!-- ============ FLAGSHIP KEYNOTE (light) ============ -->
-<section class="sec light">
-  <div class="wrap fade" style="max-width:1100px">
-    <div class="grid-2col">
-      <div>
-        <span class="badge-tag">FLAGSHIP KEYNOTE</span>
-        <h2 style="font-size:clamp(2.2rem,4vw,3.2rem);font-weight:900;margin:0 0 8px">THE M.A.S.K.</h2>
-        <p class="kt-sub">High Performance Without Hiding</p>
-        <p style="font-size:1.12rem;line-height:1.8;margin-bottom:20px">High performers are taught to push through, produce, and deliver. They are not always taught what to do with everything they carry underneath. Fernando combines nine years in the NFL, years of player development, his own mental health journey, and the M.A.S.K. framework to help audiences recognize what high performance can hide and build a healthier way forward.</p>
-        <p class="callout">This is not about lowering expectations. It is about helping people carry them.</p>
-        <div class="pills"><small>Available as</small><span class="pill">Keynote</span><span class="pill">Workshop</span><span class="pill">Team Experience</span></div>
-      </div>
-      <figure class="pic tall"><div class="ph">[ Keynote Photo Placeholder: Fernando on stage ]</div></figure>
+<!-- ============ FLAGSHIP KEYNOTE (white, photo bleeds off the right) ============ -->
+<section class="sec light keynote-light">
+  <div class="wrap fade" style="max-width:1240px">
+    <div class="kt-text">
+      <span class="badge-tag">FLAGSHIP KEYNOTE</span>
+      <h2 style="font-size:clamp(2.2rem,4vw,3.2rem);font-weight:900;margin:0 0 8px">THE M.A.S.K.</h2>
+      <p class="kt-sub">High Performance Without Hiding</p>
+      <p style="font-size:1.12rem;line-height:1.8;margin-bottom:20px">High performers are taught to push through, produce, and deliver. They are not always taught what to do with everything they carry underneath. Fernando combines nine years in the NFL, years of player development, his own mental health journey, and the M.A.S.K. framework to help audiences recognize what high performance can hide and build a healthier way forward.</p>
+      <p class="callout">This is not about lowering expectations. It is about helping people carry them.</p>
+      <div class="pills"><small>Available as</small><span class="pill">Keynote</span><span class="pill">Workshop</span><span class="pill">Team Experience</span></div>
     </div>
+    
+    <!-- Cutout Image Element -->
+    <img src="assets/images/fernando-cutout.png" alt="Fernando Velasco" class="kt-cutout" />
   </div>
 </section>
 
@@ -147,9 +200,56 @@
     <div class="center fade"><span class="badge-tag">AUDIENCES</span>
       <h2 style="font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800">Who Fernando Speaks To</h2></div>
     <div class="grid-3">
-      <div class="aud fade"><div class="ph">[ Corporate Photo Placeholder ]</div><div class="t"><h3>Corporate Leaders &amp; Teams</h3><p>For organizations that want high performance without a culture where people hide challenges, struggle alone, or pretend everything is fine.</p></div></div>
-      <div class="aud fade"><div class="ph">[ Athletes Photo Placeholder ]</div><div class="t"><h3>Professional &amp; Collegiate Athletes</h3><p>For athletes navigating pressure, identity, transition, and life beyond the game. Fernando understands the locker room because he lived in it.</p></div></div>
-      <div class="aud fade"><div class="ph">[ Universities Photo Placeholder ]</div><div class="t"><h3>Universities &amp; Emerging Leaders</h3><p>For students and young leaders learning how ambition, identity, relationships, and mental wellness shape who they are becoming.</p></div></div>
+      <!-- CARD 1: Corporate -->
+      <div class="aud fade">
+        <div class="ph">
+          <div class="aud-icon-badge">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="t">
+          <h3>Corporate Leaders &amp; Teams</h3>
+          <p>For organizations that want high performance without a culture where people hide challenges, struggle alone, or pretend everything is fine.</p>
+        </div>
+      </div>
+
+      <!-- CARD 2: Athletes -->
+      <div class="aud fade">
+        <div class="ph">
+          <div class="aud-icon-badge">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2"></path>
+              <path d="M18 9h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"></path>
+              <path d="M4 22h16"></path>
+              <path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34"></path>
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="t">
+          <h3>Professional &amp; Collegiate Athletes</h3>
+          <p>For athletes navigating pressure, identity, transition, and life beyond the game. Fernando understands the locker room because he lived in it.</p>
+        </div>
+      </div>
+
+      <!-- CARD 3: Universities -->
+      <div class="aud fade">
+        <div class="ph">
+          <div class="aud-icon-badge">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="t">
+          <h3>Universities &amp; Emerging Leaders</h3>
+          <p>For students and young leaders learning how ambition, identity, relationships, and mental wellness shape who they are becoming.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
