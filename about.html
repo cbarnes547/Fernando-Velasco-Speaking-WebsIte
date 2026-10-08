@@ -69,6 +69,16 @@
   .grid-3col>.fade:nth-child(3n+2),.stats>.fade:nth-child(3n+2){transition-delay:.12s}
   .grid-3col>.fade:nth-child(3n+3),.stats>.fade:nth-child(3n+3){transition-delay:.24s}
 
+  body{overflow-x:clip}
+
+  .photo-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .photo-track{display:flex;width:max-content;animation:photoscroll 70s linear infinite}
+  .photo-marquee:hover .photo-track{animation-play-state:paused}
+  .photo-set{display:flex}
+  .photo-set img{flex:0 0 auto;width:min(300px,72vw);height:380px;object-fit:cover;border-radius:14px;margin-right:16px;display:block}
+  @keyframes photoscroll{to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){.photo-track{animation:none}.photo-marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}}
+  
   @media(max-width:768px){.grid-2col{grid-template-columns:1fr}.pic::after{display:none}.tilt{transform:none}.stats{grid-template-columns:1fr}}
 </style>
 </head>
@@ -98,7 +108,7 @@
           <a href="speaking.html" class="btn-teal-outline">View Programs</a>
         </div>
       </div>
-      <figure class="pic tall"><img src="assets/images/fv-bulldog.jpg" alt="Fernando Velasco smiling, leaning on a bulldog statue"></figure>
+      <figure class="pic tall" style="margin-top:56px"><img src="assets/images/IMG_1848.jpeg" alt="Young Fernando Velasco" style="object-position:center top"></figure>
     </div>
   </div>
 </section>
@@ -106,8 +116,8 @@
 <!-- ============ STATS ============ -->
 <section class="sec band" style="padding:56px 0">
   <div class="wrap" style="max-width:1000px"><div class="stats">
+    <div class="stat fade"><b>Founder</b><span>Velasco Family Foundation</span></div>
     <div class="stat fade"><b data-count="9">9</b><span>Years in the NFL</span></div>
-    <div class="stat fade"><b data-count="10">10</b><span>Years supporting athletes &amp; leaders</span></div>
     <div class="stat fade"><b>TEDx</b><span>Speaker</span></div>
   </div></div>
 </section>
@@ -127,8 +137,8 @@
         <p class="lead-p" style="font-size:1.1rem;line-height:1.8;margin-bottom:20px">Fernando does not believe vulnerability means lowering the standard. He believes people perform better and live healthier when truth, help, systems, and identity are treated as strengths.</p>
         <p style="font-size:1.3rem;font-weight:800;color:var(--teal);margin-top:24px">That belief became M.A.S.K.</p>
       </div>
-      <div class="stack fade">
-        <div class="image-placeholder">[ NFL Action Photo Placeholder: swap in when you have one ]</div>
+      <div class="stack fade" style="margin-top:56px">
+        <figure class="pic wide"><img src="assets/images/IMG_1845.jpeg" alt="Fernando Velasco in action during an NFL game"></figure>
         <figure class="pic wide tilt"><img src="assets/images/fv-speaking-mic.jpg" alt="Fernando Velasco speaking with a microphone at the University of Georgia"></figure>
       </div>
     </div>
@@ -139,7 +149,7 @@
 <section class="sec band">
   <div class="wrap fade" style="max-width:1100px">
     <div class="grid-2col">
-      <figure class="pic tall"><img src="assets/images/fv-conversation.jpg" alt="Fernando Velasco in conversation at a leadership dinner"></figure>
+      <figure class="pic tall"><img src="assets/images/IMG_1846.jpeg" alt="Fernando Velasco in conversation at a leadership dinner"></figure>
       <div>
         <span class="badge-tag">THE DIFFERENCE</span>
         <h2 style="font-size:clamp(2rem,3.5vw,2.8rem);margin-bottom:24px;font-weight:800">Why Fernando</h2>
@@ -170,14 +180,36 @@
   </div>
 </section>
 
-<!-- ============ PHOTO STRIP (swipe / scroll sideways) ============ -->
+<!-- ============ PHOTO STRIP (auto-scrolling) ============ -->
 <section class="band" style="padding:50px 0">
-  <div class="strip-photos fade">
-    <img src="assets/images/fv-table-laugh.jpg" alt="Fernando Velasco at a leadership dinner" style="object-position:40% center">
-    <img src="assets/images/fv-speaking-slide.jpg" alt="Fernando Velasco presenting" style="object-position:75% center">
-    <img src="assets/images/fv-conversation.jpg" alt="Fernando Velasco in conversation">
-    <img src="assets/images/fv-speaking-mic.jpg" alt="Fernando Velasco speaking at the University of Georgia" style="object-position:40% center">
-    <img src="assets/images/fv-bulldog.jpg" alt="Fernando Velasco with a bulldog statue">
+  <div class="photo-marquee fade">
+    <div class="photo-track">
+
+      <!-- set 1 -->
+      <div class="photo-set">
+        <img src="assets/images/IMG_1849.jpeg" alt="Fernando Velasco presenting" style="object-position:75% center">
+        <img src="assets/images/IMG_9711.png" alt="Fernando Velasco in conversation">
+        <img src="assets/images/IMG_5379.jpeg" alt="Fernando Velasco speaking at the University of Georgia" style="object-position:40% center">
+        <img src="assets/images/IMG_1847.jpeg" alt="Fernando Velasco with a bulldog statue">
+        <img src="assets/images/IMG_5378.jpeg" alt="Fernando Velasco in conversation">
+        <img src="assets/images/IMG_5380.jpeg" alt="Fernando Velasco speaking at the University of Georgia" style="object-position:40% center">
+        <img src="assets/images/IMG_1845.jpeg" alt="Fernando Velasco with a bulldog statue">
+        <img src="assets/images/fv-table-laugh.jpg" alt="Fernando Velasco at a leadership dinner" style="object-position:40% center">
+      </div>
+
+      <!-- set 2: exact copy of set 1 (hidden from screen readers) -->
+      <div class="photo-set" aria-hidden="true">
+        <img src="assets/images/IMG_1849.jpeg" alt="" style="object-position:75% center">
+        <img src="assets/images/IMG_9711.png" alt="">
+        <img src="assets/images/IMG_5379.jpeg" alt="" style="object-position:40% center">
+        <img src="assets/images/IMG_1847.jpeg" alt="">
+        <img src="assets/images/IMG_5378.jpeg" alt="">
+        <img src="assets/images/IMG_5380.jpeg" alt="" style="object-position:40% center">
+        <img src="assets/images/IMG_1845.jpeg" alt="">
+        <img src="assets/images/fv-table-laugh.jpg" alt="" style="object-position:40% center">
+      </div>
+
+    </div>
   </div>
 </section>
 
