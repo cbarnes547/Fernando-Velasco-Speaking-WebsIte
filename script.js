@@ -65,5 +65,5 @@ $(".fade").forEach(e=>io.observe(e));
 
 /* ============ ACTIVE NAV LINK ============ */
 // Highlight the nav link that matches the current page (defaults to home.html at the site root)
-const cur=location.pathname.split("/").pop()||"home.html";
+const cur=location.pathname.split("/").pop()||"index.html";
 $("#nav a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")===cur));
