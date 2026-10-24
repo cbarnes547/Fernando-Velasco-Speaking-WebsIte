@@ -419,7 +419,11 @@ blockquote.q-banner::before,blockquote.q-banner::after{display:none}
   header .wrap nav{margin-left:auto;margin-right:28px;gap:26px}
 }
 
-
+.logo{display:inline-flex;align-items:center;line-height:0}
+.logo img{display:block;width:auto}
+.logo-h{height:36px}
+.logo-i{height:45px}
+@media(max-width:600px){.logo-h{height:28px}}
 
 
 
